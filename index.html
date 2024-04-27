@@ -19,36 +19,6 @@
         <button type="submit">Create Goal</button>
     </form>
     
-    <script>
-        document.getElementById('create-goal-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            // Get form data
-            const formData = new FormData(this);
-
-            // Make AJAX request to create a new goal
-            fetch('/goal', {
-                method: 'POST',
-                body: JSON.stringify(Object.fromEntries(formData)),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    console.log('Goal created successfully');
-                    // Redirect or display success message
-                } else {
-                    console.error('Failed to create goal');
-                    // Handle error
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                // Handle error
-            });
-        });
-    </script>
 
 </body>
 </html>
