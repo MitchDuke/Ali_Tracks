@@ -6,9 +6,49 @@
     <title>Ali Tracks</title>
 </head>
 <body>
-    <H1>
+    <h1>
         Hello World
-    </H1>
+    </h1>
+
+    <!-- Form for creating a new goal -->
+    <form id="create-goal-form">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title"><br>
+        <label for="target_amount">target_amount:</label>
+        <input type="number" id="target_amount" name="target_amount"><br>
+        <button type="submit">Create Goal</button>
+    </form>
     
+    <script>
+        document.getElementById('create-goal-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get form data
+            const formData = new FormData(this);
+
+            // Make AJAX request to create a new goal
+            fetch('/goal', {
+                method: 'POST',
+                body: JSON.stringify(Object.fromEntries(formData)),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Goal created successfully');
+                    // Redirect or display success message
+                } else {
+                    console.error('Failed to create goal');
+                    // Handle error
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Handle error
+            });
+        });
+    </script>
+
 </body>
 </html>
