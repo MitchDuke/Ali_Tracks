@@ -22,3 +22,7 @@ def update_total():
 def get_data():
     data = mongo.db.aliTracks.find()
     return jsonify(list(data))
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
