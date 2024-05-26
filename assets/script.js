@@ -3,7 +3,7 @@ async function addAmount(month) {
     if (button.disabled) return; // If button is disabled, do nothing
 
     try {
-        const response = await fetch('http://localhost:7000/update_total', {
+        const response = await fetch('/update_total', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ async function addAmount(month) {
 
 window.onload = async function() {
     try {
-        const response = await fetch('http://localhost:7000/get_total');
+        const response = await fetch('/get_total');
         if (response.ok) {
             const data = await response.json();
             document.getElementById('total').textContent = `Total: £${data.total}`;
