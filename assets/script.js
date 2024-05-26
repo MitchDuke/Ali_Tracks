@@ -1,4 +1,3 @@
-
 async function addAmount(month) {
     const button = document.getElementById(month);
     if (button.disabled) return; // If button is disabled, do nothing
@@ -8,7 +7,7 @@ async function addAmount(month) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ month: month})
+        body: JSON.stringify({ month: month })
     });
 
     if (response.ok) {
@@ -17,8 +16,7 @@ async function addAmount(month) {
         button.disabled = true; // Disable the button after it's clicked
         button.classList.remove('btn-primary');
         button.classList.add('btn-secondary'); // Change button color or style to indicate it has been clicked
-
-    }  else {
+    } else {
         console.error('Failed to update total');
     }
 }
@@ -27,7 +25,7 @@ window.onload = async function() {
     const response = await fetch('/get_total');
     if (response.ok) {
         const data = await response.json();
-        document.getElementById('total').textContent = data.total;
+        document.getElementById('total').textContent = `Total: £${data.total}`;
     } else {
         console.error('Failed to fetch total');
     }
