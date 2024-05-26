@@ -2,12 +2,18 @@ import os
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_pymongo import PyMongo
+if os.path.exists("env.py"):
+    import env
 
 app = Flask(__name__)
 CORS(app)
 app.config['MONGO_URI'] = 'mongodb+srv://DrMadKiller83:CodeInstitute83@myfirstcluster.3tmzjsu.mongodb.net/'
 mongo = PyMongo(app)
 print("MongoDB connected successfully!")
+
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 @app.route('/update_total', methods=['POST'])
 def update_total():
@@ -33,4 +39,7 @@ def get_total():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(
+        host=os.environ.get("IP", "0.0.0.0"),
+        port=int(os.environ.get("PORT", "5000")),
+        debug=True)
