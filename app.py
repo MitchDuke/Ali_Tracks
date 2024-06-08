@@ -9,7 +9,8 @@ if os.path.exists("env.py"):
 app = Flask(__name__)
 CORS(app)
 
-app.config['MONGO_URI'] = 'mongodb+srv://DrMadKiller83:CodeInstitute83@myfirstcluster.3tmzjsu.mongodb.net/'
+app.config['MONGO_URI'] = os.eviron.get('mongodb+srv://DrMadKiller83:CodeInstitute83@myfirstcluster.3tmzjsu.mongodb.net/')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')mongo = PyMongo(app)
 mongo = PyMongo(app)
 print("MongoDB connected successfully!")
 
