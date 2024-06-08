@@ -40,6 +40,14 @@ def get_total():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/reset_total', methods=['POST'])
+def reset_total():
+    try:
+        mongo.db.aliTracks.update_one({}, {'$set': {'total': 0}})
+        return jsonify({'message': 'Total reset successfully', 'total': 0})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 if __name__ == '__main__':
     app.run(
         host=os.environ.get("IP", "0.0.0.0"),

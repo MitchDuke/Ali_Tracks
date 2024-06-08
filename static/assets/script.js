@@ -38,3 +38,28 @@ window.onload = async function() {
         console.error('Error fetching total:', error);
     }
 };
+
+async function resetTotal() {
+    try {
+        const response = await fetch('/reset_total', {
+            method: 'POST'
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            document.getElementById('total').textContent = `Total: £${data.total}`;
+
+            // Enable all buttons and reset their styles
+            const buttons = document.getElementsByClassName('month-button');
+            for (let button of buttons) {
+                button.disabled = false;
+                button.classList.remove('btn-secondary');
+                button.classList.add('btn-primary');
+            }
+        } else {
+            console.error('Failed to reset total');
+        }
+    } catch (error) {
+        console.error('Error resetting total:', error);
+    }
+}
