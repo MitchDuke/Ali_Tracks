@@ -1,12 +1,14 @@
 import os
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 from flask_pymongo import PyMongo
+
 if os.path.exists("env.py"):
     import env
 
 app = Flask(__name__)
 CORS(app)
+
 app.config['MONGO_URI'] = 'mongodb+srv://DrMadKiller83:CodeInstitute83@myfirstcluster.3tmzjsu.mongodb.net/'
 mongo = PyMongo(app)
 print("MongoDB connected successfully!")
