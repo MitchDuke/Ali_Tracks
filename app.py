@@ -2,15 +2,27 @@ import os
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 from flask_pymongo import PyMongo
+from dotenv import load_dotenv
 
-if os.path.exists("env.py"):
-    import env
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
-app.config['MONGO_URI'] = os.eviron.get('mongodb+srv://DrMadKiller83:CodeInstitute83@myfirstcluster.3tmzjsu.mongodb.net/')
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+# Get the MONGO_URI and SECRET_KEY from environment variables
+mongo_uri = os.environ.get('MONGO_URI')
+secret_key = os.environ.get('SECRET_KEY')
+
+# Check if the environment variables are loaded correctly
+if not mongo_uri:
+    raise ValueError("MONGO_URI environment variable is not set.")
+if not secret_key:
+    raise ValueError("SECRET_KEY environment variable is not set.")
+
+app.config['MONGO_URI'] = mongo_uri
+app.config['SECRET_KEY'] = secret_key
+
 mongo = PyMongo(app)
 print("MongoDB connected successfully!")
 
