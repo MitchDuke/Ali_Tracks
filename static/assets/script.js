@@ -13,6 +13,7 @@ async function addAmount(month) {
 
         if (response.ok) {
             const data = await response.json();
+            console.log('Update total response:', data); // Debugging statement
             document.getElementById('total').textContent = `Total: £${data.total}`;
             button.disabled = true; // Disable the button after it's clicked
             button.classList.remove('btn-primary');
@@ -30,6 +31,7 @@ window.onload = async function() {
         const response = await fetch('/get_total');
         if (response.ok) {
             const data = await response.json();
+            console.log('Get Total response:', data); // Debugging statement
             document.getElementById('total').textContent = `Total: £${data.total}`;
         } else {
             console.error('Failed to fetch total');
@@ -47,6 +49,7 @@ async function resetTotal() {
 
         if (response.ok) {
             const data = await response.json();
+            console.log('Reset total response:', data); // Debugging statement
             document.getElementById('total').textContent = `Total: £${data.total}`;
 
             // Enable all buttons and reset their styles
