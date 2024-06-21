@@ -5,7 +5,8 @@ from flask_pymongo import PyMongo
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
-load_dotenv()
+if os.path.exists(".env"):
+    load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
