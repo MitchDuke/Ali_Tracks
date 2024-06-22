@@ -33,6 +33,22 @@ window.onload = async function() {
             const data = await response.json();
             console.log('Get Total response:', data); // Debugging statement
             document.getElementById('total').textContent = `Total: £${data.total}`;
+
+            // Determine the number of buttons to disable based on the total saved
+            const totalSaved = data.total;
+            const months = [
+                'january', 'february', 'march', 'april',
+                'may', 'june', 'july', 'august',
+                'september', 'october', 'november', 'december'
+            ];
+            const buttonsToDisable = totalSaved / 5;
+
+            for (let i = 0; i < buttonsToDisable; i++) {
+                const button = document.getElementById(months[i]);
+                button.disabled = true;
+                button.classList.remove('btn-primary');
+                button.classList.add('btn-secondary');
+            }
         } else {
             console.error('Failed to fetch total');
         }
