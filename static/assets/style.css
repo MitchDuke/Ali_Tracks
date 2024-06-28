@@ -1,37 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+
 /*General styles*/
 
-.container {
-
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-image: linear-gradient(144deg,#66ecc4, #c5b1e9 50%,#e7a2f5);
+  background-size: cover;
+  background-repeat: no-repeat;
+  justify-content: center;
+  align-items: center;
 }
 
-
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  box-sizing: border-box;
+}
 /*button class*/
-.month-button{
 
+h1 {
+  font-family: Roboto+Slab, Phantomsans, sans-serif;
+  font-size: 40px;
+  color: #140c0c;
+  text-align: center;
+  margin-top: 20px;  
 }
 
 .btn{
-    align-items: center;
-    background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
-    border: 0;
-    border-radius: 8px;
-    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    display: flex;
-    font-family: Phantomsans, sans-serif;
-    font-size: 20px;
-    justify-content: center;
-    line-height: 1em;
-    max-width: 100%;
-    min-width: 140px;
-    padding: 3px;
-    text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    cursor: pointer;
+  align-items: center;
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-family: Roboto+Slab, Phantomsans, sans-serif;
+  font-size: 20px;
+  justify-content: center;
+  line-height: 1em;
+  width: 100%;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 3px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 .btn:active,
@@ -55,32 +75,33 @@
 @media (min-width: 768px) {
   .btn {
     font-size: 24px;
-    min-width: 196px;
+    max-width: 100%;
+    width: 100%;
   }
 }
 
 .reset-btn{
-    align-items: center;
-    background-image: linear-gradient(144deg,#ff4090, #f3b542 50%,#ebe700);
-    border: 0;
-    border-radius: 8px;
-    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    display: flex;
-    font-family: Phantomsans, sans-serif;
-    font-size: 20px;
-    justify-content: center;
-    line-height: 1em;
-    max-width: 100%;
-    min-width: 140px;
-    padding: 3px;
-    text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    cursor: pointer;
+  align-items: center;
+  background-image: linear-gradient(144deg,#ff4090, #f3b542 50%,#ebe700);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-family: Roboto+Slab, Phantomsans, sans-serif;
+  font-size: 20px;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 3px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 .reset-btn:active,
@@ -97,49 +118,62 @@
   transition: 300ms;
 }
 
+
 .reset-btn:hover span {
   background: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 500px) {
   .reset-btn {
     font-size: 24px;
-    min-width: 196px;
+    max-width: 100%;
+    width: 100%;
   }
 }
 
-.btn-primary{
-
+#total {
+  align-items: center;
+  font-family: Roboto+Slab, Phantomsans, sans-serif;
+  font-size: 25px;
+  font-weight: 500;
+  justify-content: center;
+  margin-top: 15px;
+  background-image: linear-gradient(144deg,#40d9ff, #42f3a9 50%,#00eb9d);
+  border: 0px;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #140c0c;
+  display: flex;
+  padding: 16px 24px;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
 }
 
-.btn-secondary{
-    
+.total-container {
+  padding: 10px;
 }
 
-#total{
-    align-items: center;
-    font-family: Phantomsans, sans-serif;
-    font-size: 20px;
+@media (max-width: 500px) {
+    .row {
+        display: block;
+    }
+    .col-4 {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 10px;
     justify-content: center;
-    margin-top: 15px;
-    background-image: linear-gradient(144deg,#40d9ff, #42f3a9 50%,#00eb9d);
-    border: 0;
-    border-radius: 8px;
-    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    display: flex;
+    }
+    .btn {
+        width: 100%;
+    }
 }
 
-/*month Ids remove if not necessary*/
-#january{
-
-}
-
-#february{
-
-}
-
-#march{
-
+@media (min-width:767px) {
+    .reset-container, .total-container{
+        display: flex;
+        justify-content: center;
+        max-width: 50%;
+    }
 }

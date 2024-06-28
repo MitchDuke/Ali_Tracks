@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/style.css') }}">
 </head>
 <body>
+    <div class="bg">
     <div class="container">
         <h1>Monthly Saving Tracker</h1>
     </div>
@@ -57,13 +58,12 @@
             </div>    
         </div>
     </div>
-    <div class="container">
-        <div class="col-4">
-            <p id="total" >Total: £0</p>
-        </div>
+    <div class="container total-container">
+        <p id="total" >Total: £0</p>
     </div>
-    <div class="container">
+    <div class="container reset-container">
         <button id="reset" role="button" class="reset-btn btn-danger" onclick="resetTotal()"><span class="text">Reset Total</span></button>
+    </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ url_for('static', filename='assets/script.js') }}"></script>
