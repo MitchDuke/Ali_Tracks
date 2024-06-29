@@ -19,7 +19,6 @@ html, body {
   padding: 20px;
   box-sizing: border-box;
 }
-/*button class*/
 
 h1 {
   font-family: Roboto+Slab, Phantomsans, sans-serif;
@@ -28,6 +27,16 @@ h1 {
   text-align: center;
   margin-top: 20px;  
 }
+
+p {
+  font-family: Roboto+Slab, Phantomsans, sans-serif;
+  font-size: 20px;
+  color: #140c0c;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/*button class*/
 
 .btn{
   align-items: center;
