@@ -117,11 +117,37 @@ The W3C Markup Validator, W3C CSS Validator, and other validation tools were use
 - [W3C Markup Validator](https://validator.w3.org/)
 - [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)
 - [JSHint](https://jshint.com/)
-- [PEP8](http://pep8online.com/)
+- [PEP8](https://www.pythonchecker.com/)
+
+-   Using the above mentioned validators the following error logs have been recorded and actioned upon.
+
+    -   index.html error log
+        -   <img src="./static/assets/images/mp3_html_1.PNG">
+        -   <img src="./static/assets/images/mp3_html_2.PNG">
+        -   The error from the HTML code validator regarding this line: link rel="stylesheet" href="{{ url_for('static', filename='assets/style.css') }}"
+            is expected because the validator does not understand Jinja2 templating syntax used by Flask. This is not a problem in the actual application, as Flask will correctly render the template before serving it to the client. Therefore, this warning from the HTML validator can safely be ignored.
+
+    -   style.css error log
+        -   <img src="./static/assets/images/mp3_css_1.PNG">
+
+    -   script.js error log
+        -   <img src="./static/assets/images/mp3_js_1.PNG">
+
+    -   app.py error log
+        -   <img src="./static/assets/images/mp3_python_1.PNG">
+        -   <img src="./static/assets/images/mp3_python_2.PNG">
+        -   <img src="./static/assets/images/mp3_python_3.PNG">
+        -   <img src="./static/assets/images/mp3_python_4.PNG">
+
 
 ### Performance
 
 - [Google Lighthouse](https://developers.google.com/web/tools/lighthouse)
+    -   <img src="./static/assets/images/mp3_lighthouse_1.PNG">
+    -   <img src="./static/assets/images/mp3_lighthouse_2.PNG">
+    -   <img src="./static/assets/images/mp3_lighthouse_3.PNG">
+    -   <img src="./static/assets/images/mp3_lighthouse_4.PNG">
+    -   <img src="./static/assets/images/mp3_lighthouse_5.PNG">
 
 ### Manual Testing
 

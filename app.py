@@ -28,18 +28,27 @@ app.config['SECRET_KEY'] = secret_key
 mongo = PyMongo(app)
 
 if mongo.db is None:
-    raise ValueError("Failed to connect to MongoDB. Check your MONGO_URI and database configuration.")
+    raise ValueError("Failed to connect to MongoDB. Check your MONGO_URI "
+                     "and database configuration.")
 
 print("MongoDB connected successfully!")
 
 # Reference the correct collection
 monthly_tracker = mongo.db.monthlyTracker
 
+
+# Define the routes for the html page
 @app.route("/")
+
+
 def index():
     return render_template("index.html")
 
+
 @app.route('/update_total', methods=['POST'])
+
+
+# Update the total in the database
 def update_total():
     try:
         month = request.json.get('month')
@@ -56,12 +65,17 @@ def update_total():
         updated_total = monthly_tracker.find_one({})['total']
         print(f"Updated total: {updated_total}")
 
-        return jsonify({'message': 'Total updated successfully', 'total': updated_total})
+        # Return the updated total
+        return jsonify({'message': 'Total updated successfully',
+                        'total': updated_total})
     except Exception as e:
         print(f"Error updating total: {e}")
         return jsonify({'error': str(e)}), 500
 
+# Get total from the database
 @app.route('/get_total')
+
+
 def get_total():
     try:
         data = monthly_tracker.find_one({})
@@ -74,7 +88,10 @@ def get_total():
         print(f"Error fetching total: {e}")
         return jsonify({'error': str(e)}), 500
 
+# Reset the total to 0
 @app.route('/reset_total', methods=['POST'])
+
+
 def reset_total():
     try:
         monthly_tracker.update_one({}, {'$set': {'total': 0}})
@@ -88,4 +105,4 @@ if __name__ == '__main__':
     app.run(
         host=os.environ.get("IP", "0.0.0.0"),
         port=int(os.environ.get("PORT", "5000")),
-        debug=True)
+        debug=False)
