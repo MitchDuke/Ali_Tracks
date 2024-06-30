@@ -6,7 +6,7 @@ A web based app to track savings goals
 
 This is a Flask-based web application that interacts with a MongoDB database. It includes routes for updating and retrieving totals, and it's designed to demonstrate CRUD operations. The application is deployed on Heroku, making it accessible from anywhere.
 
-<h2 align="center">Insert Image</h2>
+<h2 align="center"><img src="./static/assets/images/main_capture_tiled.PNG"></h2>
 
 ## Table of Contents
 
