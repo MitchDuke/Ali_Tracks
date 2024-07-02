@@ -1,8 +1,9 @@
-import os
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, redirect, url_for, session, flash
+from flash_bcyrpt import Bcrypt
 from flask_cors import CORS
 from flask_pymongo import PyMongo
 from dotenv import load_dotenv
+import os
 
 # Load environment variables from .env file
 if os.path.exists(".env"):
@@ -26,6 +27,8 @@ app.config['SECRET_KEY'] = secret_key
 
 # Initialize PyMongo with the Flask app
 mongo = PyMongo(app)
+users_collection = mongo.db.users
+savings_collection = mongo.db.savings
 
 if mongo.db is None:
     raise ValueError("Failed to connect to MongoDB. Check your MONGO_URI "
