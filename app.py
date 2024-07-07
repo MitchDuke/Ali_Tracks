@@ -11,10 +11,12 @@ if os.path.exists(".env"):
 
 app = Flask(__name__)
 CORS(app)
+bycryt =Bcrypt(app)
 
 # Get the MONGO_URI and SECRET_KEY from environment variables
 mongo_uri = os.environ.get('MONGO_URI')
 secret_key = os.environ.get('SECRET_KEY')
+print("MongoDB connected successfully!")
 
 # Check if the environment variables are loaded correctly
 if not mongo_uri:
@@ -34,24 +36,37 @@ if mongo.db is None:
     raise ValueError("Failed to connect to MongoDB. Check your MONGO_URI "
                      "and database configuration.")
 
-print("MongoDB connected successfully!")
 
-# Reference the correct collection
-monthly_tracker = mongo.db.monthlyTracker
+# Route for the registration page
+@app.route('/register', methods=['POST'])
+def register():
+    if request.method == 'POST':
+        user = request.form['username']
+        password = request.form['password']
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+        users_collection.insert_one({'username': user, 'password': hashed_password})
+        flash('Registration successful! Please login.')
+        return redirect(url_for('login'))
+    return render_template('register.html')
 
 
-# Define the routes for the html page
-@app.route("/")
+# Route for the login page
+@app.route('/', methods=['GET', 'POST'])
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
 
 
-def index():
-    return render_template("index.html")
+# Route to logout
+@app.route('/logout')
 
 
-@app.route('/update_total', methods=['POST'])
+# Route to the savings page /index page
+@app.route('/index')
 
 
 # Update the total in the database
+@app.route('/update_total', methods=['POST'])
 def update_total():
     try:
         month = request.json.get('month')
