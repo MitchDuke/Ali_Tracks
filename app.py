@@ -140,6 +140,17 @@ def reset_total():
         print(f"Error resetting total: {e}")
         return jsonify({'error': str(e)}), 500
 
+# Route for the contact page
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    if request.method == 'POST':
+        name = request.form['name']
+        message = request.form['message']
+        # Send the message to the database
+        flash('Message sent successfully, thank you!')
+        return redirect(url_for('contact'))
+    return render_template('contact.html')
+
 
 if __name__ == '__main__':
     app.run(
