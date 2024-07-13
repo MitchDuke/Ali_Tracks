@@ -52,9 +52,17 @@ def register():
 
 # Route for the login page
 @app.route('/', methods=['GET', 'POST'])
+def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        user = users_collection.find_one({'username': username})
+        if user and bcrypt.check_password_hash(user['password'], password):
+            session['username'] = username
+            return redirect(url_for('index'))
+        else:
+            flash('Invalid credentials, please try again!')
+    return render_template('login.html')
 
 
 # Route to logout
