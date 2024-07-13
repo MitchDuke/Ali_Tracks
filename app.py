@@ -67,7 +67,10 @@ def login():
 
 # Route to logout
 @app.route('/logout')
-
+def logout():
+    session.pop('username', None)
+    flash('You have been logged out!')
+    return redirect(url_for('login'))
 
 
 # Route to the savings page /index page
@@ -81,20 +84,21 @@ def index():
 # Update the total in the database
 @app.route('/update_total', methods=['POST'])
 def update_total():
+    if username not in session:
+        return redirect(url_for('login'))
+    
     try:
         month = request.json.get('month')
+        username = session['username']
         print(f"Received request to update total for month: {month}")
 
         # Ensure there is a document in the collection
-        if not monthly_tracker.find_one({}):
-            monthly_tracker.insert_one({'total': 0})
+        if not savings_collection.find_one({'username': username}):
+            savings_collection.insert_one({'username': username,'total': 0})
 
-        # Increment total by £5 for the selected month
-        monthly_tracker.update_one({}, {'$inc': {'total': 5}})
-
-        # Get updated total
-        updated_total = monthly_tracker.find_one({})['total']
-        print(f"Updated total: {updated_total}")
+        savings_collection.update_one({'username': username}, {'$inc': {'total': 5}})
+        update_total = savings_collection.find_one({'username': username})['total']
+        print(f"Updated total for {username}: {update_total}")
 
         # Return the updated total
         return jsonify({'message': 'Total updated successfully',
@@ -105,15 +109,17 @@ def update_total():
 
 # Get total from the database
 @app.route('/get_total')
-
-
 def get_total():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    
     try:
-        data = monthly_tracker.find_one({})
+        username = session['username']
+        data = savings_collection.find_one({})
         if data is None:
             data = {'total': 0}
-            monthly_tracker.insert_one(data)
-        print(f"Current total: {data['total']}")
+            savings_collection.insert_one({'username': username, 'total': 0})
+        print(f"Current total for {username}: {data['total']}")
         return jsonify({'total': data['total']})
     except Exception as e:
         print(f"Error fetching total: {e}")
@@ -121,16 +127,19 @@ def get_total():
 
 # Reset the total to 0
 @app.route('/reset_total', methods=['POST'])
-
-
 def reset_total():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    
     try:
-        monthly_tracker.update_one({}, {'$set': {'total': 0}})
-        print("Total reset to 0")
-        return jsonify({'message': 'Total reset successfully', 'total': 0})
+        username = session['username']
+        savings_collection.update_one({'username': username}, {'$set': {'total': 0}})
+        print("Total reset to 0 for {username}")
+        return jsonify({'message': 'Total reset successfull', 'total': 0})
     except Exception as e:
         print(f"Error resetting total: {e}")
         return jsonify({'error': str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(
