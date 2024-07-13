@@ -69,8 +69,13 @@ def login():
 @app.route('/logout')
 
 
+
 # Route to the savings page /index page
 @app.route('/index')
+def index():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    return render_template('index.html')
 
 
 # Update the total in the database
