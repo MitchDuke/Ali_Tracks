@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request, render_template, redirect, url_for, session, flash
-from flash_bcyrpt import Bcrypt
+from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 from flask_pymongo import PyMongo
 from dotenv import load_dotenv
@@ -11,7 +11,7 @@ if os.path.exists(".env"):
 
 app = Flask(__name__)
 CORS(app)
-bycryt =Bcrypt(app)
+bcrypt = Bcrypt(app)  # Fixed typo here
 
 # Get the MONGO_URI and SECRET_KEY from environment variables
 mongo_uri = os.environ.get('MONGO_URI')
@@ -36,9 +36,8 @@ if mongo.db is None:
     raise ValueError("Failed to connect to MongoDB. Check your MONGO_URI "
                      "and database configuration.")
 
-
 # Route for the registration page
-@app.route('/register', methods=['POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         user = request.form['username']
@@ -48,7 +47,6 @@ def register():
         flash('Registration successful! Please login.')
         return redirect(url_for('login'))
     return render_template('register.html')
-
 
 # Route for the login page
 @app.route('/', methods=['GET', 'POST'])
@@ -64,14 +62,12 @@ def login():
             flash('Invalid credentials, please try again!')
     return render_template('login.html')
 
-
 # Route to logout
 @app.route('/logout')
 def logout():
     session.pop('username', None)
     flash('You have been logged out!')
     return redirect(url_for('login'))
-
 
 # Route to the savings page /index page
 @app.route('/index')
@@ -80,13 +76,12 @@ def index():
         return redirect(url_for('login'))
     return render_template('index.html')
 
-
 # Update the total in the database
 @app.route('/update_total', methods=['POST'])
 def update_total():
-    if username not in session:
+    if 'username' not in session:  # Fixed condition here
         return redirect(url_for('login'))
-    
+
     try:
         month = request.json.get('month')
         username = session['username']
@@ -94,15 +89,14 @@ def update_total():
 
         # Ensure there is a document in the collection
         if not savings_collection.find_one({'username': username}):
-            savings_collection.insert_one({'username': username,'total': 0})
+            savings_collection.insert_one({'username': username, 'total': 0})
 
         savings_collection.update_one({'username': username}, {'$inc': {'total': 5}})
-        update_total = savings_collection.find_one({'username': username})['total']
-        print(f"Updated total for {username}: {update_total}")
+        updated_total = savings_collection.find_one({'username': username})['total']
+        print(f"Updated total for {username}: {updated_total}")
 
         # Return the updated total
-        return jsonify({'message': 'Total updated successfully',
-                        'total': updated_total})
+        return jsonify({'message': 'Total updated successfully', 'total': updated_total})
     except Exception as e:
         print(f"Error updating total: {e}")
         return jsonify({'error': str(e)}), 500
@@ -112,10 +106,10 @@ def update_total():
 def get_total():
     if 'username' not in session:
         return redirect(url_for('login'))
-    
+
     try:
         username = session['username']
-        data = savings_collection.find_one({})
+        data = savings_collection.find_one({'username': username})
         if data is None:
             data = {'total': 0}
             savings_collection.insert_one({'username': username, 'total': 0})
@@ -130,12 +124,12 @@ def get_total():
 def reset_total():
     if 'username' not in session:
         return redirect(url_for('login'))
-    
+
     try:
         username = session['username']
         savings_collection.update_one({'username': username}, {'$set': {'total': 0}})
-        print("Total reset to 0 for {username}")
-        return jsonify({'message': 'Total reset successfull', 'total': 0})
+        print(f"Total reset to 0 for {username}")
+        return jsonify({'message': 'Total reset successfully', 'total': 0})
     except Exception as e:
         print(f"Error resetting total: {e}")
         return jsonify({'error': str(e)}), 500
@@ -151,9 +145,8 @@ def contact():
         return redirect(url_for('contact'))
     return render_template('contact.html')
 
-
 if __name__ == '__main__':
     app.run(
         host=os.environ.get("IP", "0.0.0.0"),
         port=int(os.environ.get("PORT", "5000")),
-        debug=False)
+        debug=True)
