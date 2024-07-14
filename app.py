@@ -11,7 +11,7 @@ if os.path.exists(".env"):
 
 app = Flask(__name__)
 CORS(app)
-bcrypt = Bcrypt(app)  # Fixed typo here
+bcrypt = Bcrypt(app)
 
 # Get the MONGO_URI and SECRET_KEY from environment variables
 mongo_uri = os.environ.get('MONGO_URI')
