@@ -31,6 +31,7 @@ app.config['SECRET_KEY'] = secret_key
 mongo = PyMongo(app)
 users_collection = mongo.db.users
 savings_collection = mongo.db.savings
+contact_collection = mongo.db.contacts
 
 if mongo.db is None:
     raise ValueError("Failed to connect to MongoDB. Check your MONGO_URI "
@@ -140,9 +141,10 @@ def contact():
     if request.method == 'POST':
         name = request.form['name']
         message = request.form['message']
+        contact_collection.insert_one({'name': name, 'message': message})  # Insert message into the database
         # Send the message to the database
         flash('Message sent successfully, thank you!')
-        return redirect(url_for('contact'))
+        return redirect(url_for('index'))
     return render_template('contact.html')
 
 if __name__ == '__main__':
