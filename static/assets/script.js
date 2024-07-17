@@ -32,7 +32,10 @@ window.onload = async function() {
         if (response.ok) {
             const data = await response.json();
             console.log('Get Total response:', data); // Debugging statement
-            document.getElementById('total').textContent = `Total: £${data.total}`;
+            const totalElement = document.getElementById('total');
+            if (totalElement) {
+                totalElement.textContent = `Total: £${data.total}`;
+            }
 
             // Determine the number of buttons to disable based on the total saved
             const totalSaved = data.total;
