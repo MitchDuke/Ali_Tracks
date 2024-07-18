@@ -19,7 +19,7 @@
                     {% if 'username' in session %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('logout')}}">Logout</a>
-                        </li>                 
+                        </li>
                     {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('register')}}">Register</a>
@@ -32,7 +32,6 @@
             </div>
         </div>
     </nav>
-
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <div id="flash-message" class="alert alert-success" role="alert">

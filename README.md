@@ -73,11 +73,16 @@ This is a Flask-based web application that interacts with a MongoDB database. It
 
 ### Main Page
 - <h2 align="centre"><img src="/static/assets/images/main_capture.PNG"></h2>
+- <h2 align="centre"><img src="/static/assets/images/register_capture.PNG"></h2>
+- <h2 align="centre"><img src="/static/assets/images/login_capture.PNG"></h2>
+- <h2 align="centre"><img src="/static/assets/images/contact_capture.PNG"></h2>
 
 ## Features
 
 - Responsive on all device sizes
+- Handles multiple users and stores their data seperately
 - Interactive elements for data retrieval and updates
+- A contact page to leave suggestions and ask questions which are stored in the database to be responded to.
 
 ### Page Content
 
@@ -117,15 +122,25 @@ The W3C Markup Validator, W3C CSS Validator, and other validation tools were use
 - [W3C Markup Validator](https://validator.w3.org/)
 - [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)
 - [JSHint](https://jshint.com/)
-- [PEP8](https://www.pythonchecker.com/)
+- [PEP8](https://snyk.io/code-checker/python/)
 
 -   Using the above mentioned validators the following error logs have been recorded and actioned upon.
 
     -   index.html error log
         -   <img src="./static/assets/images/mp3_html_1.PNG">
         -   <img src="./static/assets/images/mp3_html_2.PNG">
-        -   The error from the HTML code validator regarding this line: link rel="stylesheet" href="{{ url_for('static', filename='assets/style.css') }}"
-            is expected because the validator does not understand Jinja2 templating syntax used by Flask. This is not a problem in the actual application, as Flask will correctly render the template before serving it to the client. Therefore, this warning from the HTML validator can safely be ignored.
+            
+    -   base.html error log
+        -   <img src="./static/assets/images/mp3_base_html_1.PNG">
+    
+    -   register.html error log
+        -   <img src="./static/assets/images/mp3_register_html_1.PNG">
+
+    -   contact.html error log
+        -   <img src="./static/assets/images/mp3_register_html_1.PNG">
+
+    -   The errors from the HTML code validator regarding this line: link rel="stylesheet" href="{{ url_for('static', filename='assets/style.css') }}" and the jinga lines for 
+        extending blocks and end blocks "{%%}" is expected because the validator does not understand Jinja2 templating syntax used by Flask. This is not a problem in the actual application, as Flask will correctly render the template before serving it to the client. Therefore, this warning from the HTML validator can safely be ignored.
 
     -   style.css error log
         -   <img src="./static/assets/images/mp3_css_1.PNG">
@@ -134,10 +149,7 @@ The W3C Markup Validator, W3C CSS Validator, and other validation tools were use
         -   <img src="./static/assets/images/mp3_js_1.PNG">
 
     -   app.py error log
-        -   <img src="./static/assets/images/mp3_python_1.PNG">
-        -   <img src="./static/assets/images/mp3_python_2.PNG">
-        -   <img src="./static/assets/images/mp3_python_3.PNG">
-        -   <img src="./static/assets/images/mp3_python_4.PNG">
+        -   <img src="./static/assets/images/python_checker_1.PNG">
 
 
 ### Performance
