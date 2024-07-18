@@ -64,6 +64,7 @@ This is a Flask-based web application that interacts with a MongoDB database. It
     2. As a frequent user, I expect the application to remember my progress.
 
 ### Design
+
 - #### Colour Scheme
     - The application uses a professional and clean color scheme to ensure a user-friendly interface.
 - #### Typography
@@ -73,8 +74,14 @@ This is a Flask-based web application that interacts with a MongoDB database. It
 
 ### Main Page
 - <h2 align="centre"><img src="/static/assets/images/main_capture.PNG"></h2>
+
+### Register Page
 - <h2 align="centre"><img src="/static/assets/images/register_capture.PNG"></h2>
+
+### Login Page
 - <h2 align="centre"><img src="/static/assets/images/login_capture.PNG"></h2>
+
+### Contact Page
 - <h2 align="centre"><img src="/static/assets/images/contact_capture.PNG"></h2>
 
 ## Features
