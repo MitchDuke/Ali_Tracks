@@ -176,8 +176,7 @@ The W3C Markup Validator, W3C CSS Validator, and other validation tools were use
 
 - Enhance the user interface with more dynamic elements.
 - Add in additional pages with different format saving challenges.
-- Implement user logins and profiles for multiple users to track their savings challenges.
-- Implement additional features for better user experience.
+- Add a home page with savings advice rather than begining with the login page.
 
 ### Testing User Stories from User Experience (UX) Section
 
@@ -232,8 +231,8 @@ By forking the GitHub Repository, you can make a copy of the original repository
 4. Change the current working directory to the location where you want the cloned directory.
 5. Type `git clone`, and then paste the URL.
 
-```bash
-$ git clone https://github.com/your-username/repository-name/
+(```bash)
+- $ git clone (https://github.com/your-username/repository-name/)
 
 ## Credits
 
@@ -253,6 +252,8 @@ $ git clone https://github.com/your-username/repository-name/
 
 -   My Mentor for continuous helpful feedback.
 -   My tutor for his support and guidance throughout the project.
--   My wife for giving me the inspiration for the app and using, trying to break it with hrepeatedly completeing the challenge, resetting and using her phone to test it on devices.
--   My friend Simon Nightingale who helped me test the project on various platforms and browsers.
+-   My wife for giving me the inspiration for the app and using, trying to break it with repeatedly completeing the challenge, resetting and using her phone to test it on smaller    
+    devices.
+-   My friend Simon Nightingale who helped me test the project on various platforms and browsers. Various members of a private discord who are developers themselves have tested the 
+    app, offered help and suggestions along the way.
 -   Tutor support at Code Institute for their support.
