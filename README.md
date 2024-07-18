@@ -155,11 +155,14 @@ The W3C Markup Validator, W3C CSS Validator, and other validation tools were use
 ### Performance
 
 - [Google Lighthouse](https://developers.google.com/web/tools/lighthouse)
-    -   <img src="./static/assets/images/mp3_lighthouse_1.PNG">
-    -   <img src="./static/assets/images/mp3_lighthouse_2.PNG">
-    -   <img src="./static/assets/images/mp3_lighthouse_3.PNG">
-    -   <img src="./static/assets/images/mp3_lighthouse_4.PNG">
-    -   <img src="./static/assets/images/mp3_lighthouse_5.PNG">
+    -   <img src="./static/assets/images/lighthouse_login_desktop.PNG">
+    -   <img src="./static/assets/images/lighthouse_login_mobile.PNG">
+    -   <img src="./static/assets/images/lighthouse_register_desktop.PNG">
+    -   <img src="./static/assets/images/lighthouse_register_mobile.PNG">
+    -   <img src="./static/assets/images/lighthouse_index_desktop.PNG">
+    -   <img src="./static/assets/images/lighthouse_index_mobile.PNG">
+    -   <img src="./static/assets/images/lighthouse_contact_desktop.PNG">
+    -   <img src="./static/assets/images/lighthouse_contact_mobile.PNG">    
 
 ### Manual Testing
 
@@ -184,16 +187,19 @@ The W3C Markup Validator, W3C CSS Validator, and other validation tools were use
         - Clear instructions are provided on the main page.
     2. As a First Time Visitor, I want to know how to interact with the application.
         - The user interface is intuitive and guides the user through the functionalities.
+    3. As a First Time Visitor, I want a simple and straightforward way to register an account, login and access my information.
 
 - #### Returning Visitor Goals
 
     1. As a Returning Visitor, I want to quickly access the main functionalities.
         - The main functionalities are easily accessible from the main page.
+    2. As a Returning Visitor, I want to be able to login easily to continue the savings goal.
 
 - #### Frequent User Goals
 
     1. As a Frequent User, I want to efficiently update and retrieve data without hassle.
         - The application is designed for efficient data management.
+    2. As a Frequent User, I want to be able to give feedback and ask questions easily by submitting these in the contact form
 
 ### Known Bugs
 
@@ -227,7 +233,7 @@ By forking the GitHub Repository, you can make a copy of the original repository
 5. Type `git clone`, and then paste the URL.
 
 ```bash
-$ git clone https://github.com/your-username/repository-name
+$ git clone https://github.com/your-username/repository-name/
 
 ## Credits
 
@@ -241,12 +247,12 @@ $ git clone https://github.com/your-username/repository-name
 
 ### Media
 
--   
+-   All images contained herein are property of the developer
 
 ### Acknowledgements
 
 -   My Mentor for continuous helpful feedback.
 -   My tutor for his support and guidance throughout the project.
--   My step children and wife for playing the game trying to break it with high scores and using their phones to test it on smaller devices.
+-   My wife for giving me the inspiration for the app and using, trying to break it with hrepeatedly completeing the challenge, resetting and using her phone to test it on devices.
 -   My friend Simon Nightingale who helped me test the project on various platforms and browsers.
 -   Tutor support at Code Institute for their support.
