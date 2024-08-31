@@ -38,6 +38,7 @@ if mongo.db is None:
     raise ValueError("Failed to connect to MongoDB. Check your MONGO_URI and database configuration.")
 
 
+# register route
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     """Route for the registration page."""
@@ -52,6 +53,7 @@ def register():
     return render_template('register.html')
 
 
+# Login route
 @app.route('/', methods=['GET', 'POST'])
 def login():
     """Route for the login page."""
@@ -67,6 +69,7 @@ def login():
     return render_template('login.html')
 
 
+# Logout route
 @app.route('/logout')
 def logout():
     """Route to logout."""
@@ -75,6 +78,7 @@ def logout():
     return redirect(url_for('login'))
 
 
+# Index route
 @app.route('/index')
 def index():
     """Route to the savings page /index page."""
@@ -83,6 +87,7 @@ def index():
     return render_template('index.html')
 
 
+# Update total route
 @app.route('/update_total', methods=['POST'])
 def update_total():
     """Update the total in the database."""
@@ -112,6 +117,7 @@ def update_total():
         return jsonify({'error': str(e)}), 500
 
 
+# Get total route
 @app.route('/get_total')
 def get_total():
     """Get total from the database."""
@@ -132,6 +138,7 @@ def get_total():
         return jsonify({'error': str(e)}), 500
 
 
+# Reset total route
 @app.route('/reset_total', methods=['POST'])
 def reset_total():
     """Reset the total to 0."""
@@ -149,6 +156,7 @@ def reset_total():
         return jsonify({'error': str(e)}), 500
 
 
+# Contact page route
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     """Route for the contact page."""
@@ -160,6 +168,24 @@ def contact():
         flash('Message sent successfully, thank you!')
         return redirect(url_for('index'))
     return render_template('contact.html')
+
+
+# Create goal route
+@app.route('/create_goal', methods=['POST'])
+def create_goal():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+goal = {
+    'username': session['username'],
+    'goal_name': goal_name,
+    'target_amount': target_amount,
+    'current_amount': 0,
+    'status': 'in-progress'
+}
+
+goals_collection.insert_one(goal)
+flash('Goal created successfully!')
+return redirect(url_for('goals'))
 
 
 if __name__ == '__main__':
