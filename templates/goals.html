@@ -4,6 +4,15 @@
 
 {% block content %}
 <h1>My Goals</h1>
-<form method="POST" action="/register">
+<form method="POST" action="/create_goal">
+    <div class="mb-3">
+        <label for="goal_name" class="form-label">Goal Name</label>
+        <input type="text" class="form-control" id="goal_name" name="goal_name" required>
+    </div>
+    <div class="mb-3">
+        <label for="target_amount" class"form_label">Target Amount</label>
+        <input type="number" class="form-control" id="target_amount" name="target_amount" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Create Goal</button>
 </form>
 {% endblock %}
