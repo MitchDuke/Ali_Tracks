@@ -164,7 +164,7 @@ def contact():
         name = request.form['name']
         message = request.form['message']
         contact_collection.insert_one(
-            {'name': name, 'message': message})  # Insert message into the database
+            {'name': name, 'message': message})  # Insert message in database
         flash('Message sent successfully, thank you!')
         return redirect(url_for('index'))
     return render_template('contact.html')
@@ -175,17 +175,34 @@ def contact():
 def create_goal():
     if 'username' not in session:
         return redirect(url_for('login'))
-goal = {
-    'username': session['username'],
-    'goal_name': goal_name,
-    'target_amount': target_amount,
-    'current_amount': 0,
-    'status': 'in-progress'
-}
+    goal = {
+        'username': session['username'],
+        'goal_name': goal_name,
+        'target_amount': target_amount,
+        'current_amount': 0,
+        'status': 'in-progress'
+    }
 
-goals_collection.insert_one(goal)
-flash('Goal created successfully!')
-return redirect(url_for('goals'))
+    goals_collection.insert_one(goal)
+    flash('Goal created successfully!')
+    return redirect(url_for('goals'))
+
+
+# Update goal route
+@app.route('/update_goal', methods=['POST'])
+def update_goal():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    goal_id = request.form['goal_id']
+    amount = int(request.form['amount'])
+
+    goals_collection.update_one(
+        {'_id': ObjectId(goal_id)},
+        {'$inc': {'current_amount': amount}}
+    )
+    flash('Goal updated successfully!')
+    return redirect(url_for('goals'))
 
 
 if __name__ == '__main__':
