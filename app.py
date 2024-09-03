@@ -171,10 +171,15 @@ def contact():
 
 
 # Create goal route
-@app.route('/goals', methods=['POST'])
+@app.route('/create-goal', methods=['POST'])
 def create_goal():
     if 'username' not in session:
         return redirect(url_for('login'))
+
+    goal_name = request.form['goal_name']
+    target_amount = int(request.form['target_amount'])
+    username = session['username']
+
     goal = {
         'username': session['username'],
         'goal_name': goal_name,
@@ -185,7 +190,7 @@ def create_goal():
 
     goals_collection.insert_one(goal)
     flash('Goal created successfully!')
-    return redirect(url_for('goals'))
+    return redirect(url_for('index'))
 
 
 # Update goal route
@@ -202,7 +207,20 @@ def update_goal():
         {'$inc': {'current_amount': amount}}
     )
     flash('Goal updated successfully!')
-    return redirect(url_for('goals'))
+    return redirect(url_for('index'))
+
+
+# Delete goal route
+@app.route('/delete_goal', methods=['POST'])
+def delete_goal():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    goal_id = request.form['goal_id']
+
+    goals_collection.delete_one({'_id': ObjectId(goal_id)})
+    flash('Goal deleted successfully!')
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
