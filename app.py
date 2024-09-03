@@ -171,7 +171,7 @@ def contact():
 
 
 # Create goal route
-@app.route('/create_goal', methods=['POST'])
+@app.route('/goals', methods=['POST'])
 def create_goal():
     if 'username' not in session:
         return redirect(url_for('login'))
