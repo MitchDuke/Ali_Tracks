@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 from flask_pymongo import PyMongo
 from dotenv import load_dotenv
+from bson.objectid import ObjectId
 
 # Load environment variables from .env file
 if os.path.exists(".env"):
@@ -33,6 +34,7 @@ mongo = PyMongo(app)
 users_collection = mongo.db.users
 savings_collection = mongo.db.savings
 contact_collection = mongo.db.contacts
+goals_collection = mongo.db.goals
 
 if mongo.db is None:
     raise ValueError("Failed to connect to MongoDB. Check your MONGO_URI and database configuration.")
@@ -168,6 +170,16 @@ def contact():
         flash('Message sent successfully, thank you!')
         return redirect(url_for('index'))
     return render_template('contact.html')
+
+
+# Goals page route
+@app.route('/goals')
+def goals():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    username = session['username']
+    user_goals = list(goals_collection.find({'username': username}))
+    return render_template('goals.html', goals=user_goals)
 
 
 # Create goal route
