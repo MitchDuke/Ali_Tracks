@@ -202,11 +202,11 @@ def create_goal():
 
     goals_collection.insert_one(goal)
     flash('Goal created successfully!')
-    return redirect(url_for('index'))
+    return redirect(url_for('goals'))
 
 
 # Update goal route
-@app.route('/update_goal', methods=['POST'])
+@app.route('/update-goal', methods=['POST'])
 def update_goal():
     if 'username' not in session:
         return redirect(url_for('login'))
@@ -219,11 +219,11 @@ def update_goal():
         {'$inc': {'current_amount': amount}}
     )
     flash('Goal updated successfully!')
-    return redirect(url_for('index'))
+    return redirect(url_for('goals'))
 
 
 # Delete goal route
-@app.route('/delete_goal', methods=['POST'])
+@app.route('/delete-goal', methods=['POST'])
 def delete_goal():
     if 'username' not in session:
         return redirect(url_for('login'))
@@ -232,7 +232,7 @@ def delete_goal():
 
     goals_collection.delete_one({'_id': ObjectId(goal_id)})
     flash('Goal deleted successfully!')
-    return redirect(url_for('index'))
+    return redirect(url_for('goals'))
 
 
 if __name__ == '__main__':

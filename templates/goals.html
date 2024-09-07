@@ -4,7 +4,7 @@
 
 {% block content %}
 <h1>My Goals</h1>
-<form method="POST" action="/create_goal">
+<form method="POST" action="/create-goal">
     <div class="mb-3">
         <label for="goal_name" class="form-label">Goal Name</label>
         <input type="text" class="form-control" id="goal_name" name="goal_name" required>
@@ -20,12 +20,12 @@
     {% for goal in goals %}
         <li>
             {{ goal.goal_name }}: £{{ goal.current_amount }} / £{{ goal.target_amount }}
-            <form method="POST" action="/update_goal" style="display:inline;">
+            <form method="POST" action="/update-goal" style="display:inline;">
                 <input type="hidden" name="goal_id" value="{{ goal._id }}">
                 <input type="number" name="amount" placeholder="Add to Goal">
                 <button type="submit" class="btn btn-success">Update</button>
             </form>
-            <form method="POST" action="/delete_goal" style="display:inline;">
+            <form method="POST" action="/delete-goal" style="display:inline;">
                 <input type="hidden" name="goal_id" value="{{ goal._id }}">
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
