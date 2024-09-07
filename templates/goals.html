@@ -10,25 +10,29 @@
         <input type="text" class="form-control" id="goal_name" name="goal_name" required>
     </div>
     <div class="mb-3">
-        <label for="target_amount" class"form-label">Target Amount</label>
+        <label for="target_amount" class="form-label">Target Amount</label>
         <input type="number" class="form-control" id="target_amount" name="target_amount" required>
     </div>
     <button type="submit" class="btn btn-primary">Create Goal</button>
 </form>
+
 <h2>Current Goals</h2>
 <ul>
     {% for goal in goals %}
         <li>
             {{ goal.goal_name }}: £{{ goal.current_amount }} / £{{ goal.target_amount }}
-            <form method="POST" action="/update-goal" style="display:inline;">
-                <input type="hidden" name="goal_id" value="{{ goal._id }}">
-                <input type="number" name="amount" placeholder="Add to Goal">
-                <button type="submit" class="btn btn-success">Update</button>
-            </form>
-            <form method="POST" action="/delete-goal" style="display:inline;">
-                <input type="hidden" name="goal_id" value="{{ goal._id }}">
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
+            <div class="goal-actions d-flex" style="gap: 10px;">
+                <form method="POST" action="/update-goal" style="display:inline-flex;">
+                    <input type="hidden" name="goal_id" value="{{ goal._id }}">
+                    <input type="number" class="form-control" name="amount" placeholder="Add to Goal" style="width: 120px;">
+                    <button type="submit" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></button>
+                </form>
+                <form method="POST" action="/delete-goal" style="display:inline-flex;">
+                    <input type="hidden" name="goal_id" value="{{ goal._id }}">
+                    <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                </form>
+            </div>
         </li>
     {% endfor %}
+</ul>
 {% endblock %}
