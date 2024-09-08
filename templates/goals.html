@@ -35,21 +35,4 @@
         </li>
     {% endfor %}
 </ul>
-<script>
-    // Ensure all buttons are disabled by default and re-enable them when input is detected
-    document.querySelectorAll('.goal-input').forEach((input) => {
-        const buttonId = input.id.replace('goal-', 'update-btn-');
-        const button = document.getElementById(buttonId);
-
-        // Disable button on load if no value
-        if (!input.value) {
-            button.disabled = true;
-        }
-
-        // Enable/disable button based on input value
-        input.addEventListener('input', function () {
-            button.disabled = !input.value.trim();
-        });
-    });
-</script>
 {% endblock %}

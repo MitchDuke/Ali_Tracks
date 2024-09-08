@@ -1,3 +1,32 @@
+// Auto-dismiss flash messages after 5 seconds
+setTimeout(function() {
+    var flashMessage = document.getElementById('flash-message');
+    if (flashMessage) {
+        flashMessage.style.transition = 'opacity 0.5s ease-in-out';
+        flashMessage.style.opacity = '0';
+        setTimeout(function() {
+            flashMessage.remove();
+        }, 500);
+    }
+}, 3000);
+
+
+// Ensure all buttons are disabled by default and re-enable them when input is detected
+document.querySelectorAll('.goal-input').forEach((input) => {
+    const buttonId = input.id.replace('goal-', 'update-btn-');
+    const button = document.getElementById(buttonId);
+
+    // Disable button on load if no value
+    if (!input.value) {
+        button.disabled = true;
+    }
+
+    // Enable/disable button based on input value
+    input.addEventListener('input', function () {
+        button.disabled = !input.value.trim();
+    });
+});
+
 async function addAmount(month) {
     const button = document.getElementById(month);
     if (button.disabled) return; // If button is disabled, do nothing
