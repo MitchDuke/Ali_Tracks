@@ -24,8 +24,8 @@
             <div class="goal-actions d-flex" style="gap: 10px;">
                 <form method="POST" action="/update-goal" style="display:inline-flex;">
                     <input type="hidden" name="goal_id" value="{{ goal._id }}">
-                    <input type="number" class="form-control" name="amount" placeholder="Add to goal" style="width: 130px;">
-                    <button type="submit" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <input type="number" class="form-control goal-input" id="goal-{{ goal._id }}" name="amount" placeholder="Add to goal" style="width: 130px;">
+                    <button type="submit" id="update-btn-{{ goal._id}}" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></button>
                 </form>
                 <form method="POST" action="/delete-goal" style="display:inline-flex;">
                     <input type="hidden" name="goal_id" value="{{ goal._id }}">
@@ -35,4 +35,21 @@
         </li>
     {% endfor %}
 </ul>
+<script>
+    // Ensure all buttons are disabled by default and re-enable them when input is detected
+    document.querySelectorAll('.goal-input').forEach((input) => {
+        const buttonId = input.id.replace('goal-', 'update-btn-');
+        const button = document.getElementById(buttonId);
+
+        // Disable button on load if no value
+        if (!input.value) {
+            button.disabled = true;
+        }
+
+        // Enable/disable button based on input value
+        input.addEventListener('input', function () {
+            button.disabled = !input.value.trim();
+        });
+    });
+</script>
 {% endblock %}
