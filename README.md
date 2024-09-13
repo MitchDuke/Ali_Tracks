@@ -4,7 +4,7 @@ A web based app to track savings goals
 
 [View the live project here.](https://ali-tracks-55fe74203334.herokuapp.com/)
 
-This is a Flask-based web application that interacts with a MongoDB database. It includes routes for updating and retrieving totals, and it's designed to demonstrate CRUD operations. The application is deployed on Heroku, making it accessible from anywhere.
+This is a Flask-based web application that interacts with a MongoDB database. It includes routes for updating and retrieving totals, and it's designed to demonstrate CRUD operations. The application is deployed on Heroku, making it accessible from anywhere. The idea of the app is so that the user can track a saving challenge each month by saving £5 and clicking each month respectively. User can also create, read, update and delete custom goals which can be updated as they progress.
 
 <h2 align="center"><img src="./static/assets/images/main_capture_tiled.PNG"></h2>
 
@@ -75,6 +75,9 @@ This is a Flask-based web application that interacts with a MongoDB database. It
 ### Main Page
 - <h2 align="centre"><img src="/static/assets/images/main_capture.PNG"></h2>
 
+### My Goals
+- <h2 align="centre"><img src="/static/assets/images/my_goals_capture.PNG"></h2>
+
 ### Register Page
 - <h2 align="centre"><img src="/static/assets/images/register_capture.PNG"></h2>
 
@@ -136,18 +139,23 @@ The W3C Markup Validator, W3C CSS Validator, and other validation tools were use
     -   index.html error log
         -   <img src="./static/assets/images/mp3_html_1.PNG">
         -   <img src="./static/assets/images/mp3_html_2.PNG">
-            
+
     -   base.html error log
         -   <img src="./static/assets/images/mp3_base_html_1.PNG">
-    
+
+    -   goals.html error log
+        -   <img src="./static/assets/images/mp3_goals_html_1.PNG">
+        -   <img src="./static/assets/images/mp3_goals_html_2.PNG">
+
     -   register.html error log
         -   <img src="./static/assets/images/mp3_register_html_1.PNG">
 
     -   contact.html error log
         -   <img src="./static/assets/images/mp3_register_html_1.PNG">
 
-    -   The errors from the HTML code validator regarding this line: link rel="stylesheet" href="{{ url_for('static', filename='assets/style.css') }}" and the jinga lines for 
-        extending blocks and end blocks "{%%}" is expected because the validator does not understand Jinja2 templating syntax used by Flask. This is not a problem in the actual application, as Flask will correctly render the template before serving it to the client. Therefore, this warning from the HTML validator can safely be ignored.
+    -   The errors from the HTML code validator regarding this line: link rel="stylesheet" href="{{ url_for('static', filename='assets/style.css') }}" and the 
+        jinga lines for extending blocks and end blocks "{%%}" is expected because the validator does not understand Jinja2 templating syntax used by Flask. This is not a problem in the actual application, as Flask will correctly render the template before serving it to the client. Therefore, this warning from the HTML validator can safely be ignored.
+    -   The errors relating to the validators inability to interpret the mongodb id's.
 
     -   style.css error log
         -   <img src="./static/assets/images/mp3_css_1.PNG">
@@ -168,6 +176,8 @@ The W3C Markup Validator, W3C CSS Validator, and other validation tools were use
     -   <img src="./static/assets/images/lighthouse_register_mobile.PNG">
     -   <img src="./static/assets/images/lighthouse_index_desktop.PNG">
     -   <img src="./static/assets/images/lighthouse_index_mobile.PNG">
+    -   <img src="./static/assets/images/lighthouse_my_goals_desktop.PNG">
+    -   <img src="./static/assets/images/lighthouse_my_goals_mobile.PNG">
     -   <img src="./static/assets/images/lighthouse_contact_desktop.PNG">
     -   <img src="./static/assets/images/lighthouse_contact_mobile.PNG">    
 
@@ -209,7 +219,9 @@ The W3C Markup Validator, W3C CSS Validator, and other validation tools were use
 
 ### Known Bugs
 
-- There might be occasional connectivity issues with the database, which are being monitored and addressed.
+-   There was a bug which would cause an internal server issue when the update goal button was clicked without any value in the input field, this was rectified by
+    adding a function to catch any button miss clicks as well as if there is no value in the input field the button is disabled.
+-   There might be occasional connectivity issues with the database, which are being monitored and addressed.
 
 ## Deployment
 
@@ -245,7 +257,9 @@ By forking the GitHub Repository, you can make a copy of the original repository
 
 ### Code
 
--   [Beautiful CSS buttons examples](https://getcssscan.com/css-buttons-examples): The button styling was used on every button of the page. Button 62 was used in this page.
+-   [Beautiful CSS buttons examples](https://getcssscan.com/css-buttons-examples): The button styling was used on every button of the page. Button 62 was used in this 
+    page with personalised colours.
+-   [Font awesome](https://fontawesome.com/): The icons used on the goals page to update or delete goals.
 
 ### Content
 
