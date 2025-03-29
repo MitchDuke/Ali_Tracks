@@ -4,7 +4,7 @@ A web based app to track savings goals
 
 [View the live project here.](https://ali-tracks-55fe74203334.herokuapp.com/)
 
-This is a Flask-based web application that interacts with a MongoDB database. It includes routes for updating and retrieving totals, and it's designed to demonstrate CRUD operations. The application is deployed on Heroku, making it accessible from anywhere. The idea of the app is so that the user can track a saving challenge each month by saving £5 and clicking each month respectively. User can also create, read, update and delete custom goals which can be updated as they progress.
+This is a Flask-based web application that interacts with a MongoDB database. It includes routes for updating and retrieving totals, and is designed to demonstrate CRUD operations. The application is deployed on Heroku, making it accessible from anywhere. The idea of the app is so that the user can track a saving challenge each month by saving £5 and clicking each month respectively. User can also create, read, update and delete custom goals which can be updated as they progress.
 
 <h2 align="center"><img src="./static/assets/images/main_capture_tiled.PNG"></h2>
 
